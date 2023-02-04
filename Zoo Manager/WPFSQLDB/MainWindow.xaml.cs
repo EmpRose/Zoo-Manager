@@ -27,8 +27,6 @@ namespace WPFSQLDB
         SqlConnection sqlConnection;
         public MainWindow()
         {
-
-
             InitializeComponent();
             // Connection Adresse der Datenbank in einem string speichern. => Projektname, Einstellungen , DataSource Name , Definition als "ConnectionString"
             string connectionString = ConfigurationManager.ConnectionStrings["WPFSQLDB.Properties.Settings.MatvejDBConnectionString"].ConnectionString;
@@ -36,11 +34,9 @@ namespace WPFSQLDB
             sqlConnection = new SqlConnection(connectionString);
             showZoo();
             showAllAnimals();
-
         }
 
         // Liste aller Zoo´s aus der Datenbank
-
         public void showZoo()
         {
             string query = "SELECT * FROM Zoo";
@@ -60,23 +56,14 @@ namespace WPFSQLDB
                     listZoos.ItemsSource = zooTable.DefaultView;
                 }
             }
-            catch (Exception e)
-            {
-
-                MessageBox.Show(e.ToString());
-            }
-
+            catch (Exception e) {MessageBox.Show(e.ToString());}
         }
 
         // Liste der Tiere im gewählten Zoo
         public void showAssociatedAnimals()
         {
             // Wichtig für das Löschen von Zoo´s. Sonst erscheint ein Fehler, da Versuch Tiere zu laden aber Zoo nicht mehr vorhanden ist.
-            if (listZoos.SelectedValue == null)
-            {
-                return;
-            }
-            
+            if (listZoos.SelectedValue == null) { return; }
                 string query = "SELECT * FROM Animal a INNER JOIN AnimalZoo az ON a.Id = az.animalid WHERE az.zooid = @zooid";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
@@ -84,39 +71,28 @@ namespace WPFSQLDB
                 using (sqlDataAdapter)
                 {
                     sqlCommand.Parameters.AddWithValue("@zooid", listZoos.SelectedValue);
-
                     DataTable animalTable = new DataTable();
                     sqlDataAdapter.Fill(animalTable);
-
-
                     listAnimals.DisplayMemberPath = "Name";
                     listAnimals.SelectedValuePath = "Id";
-
                     listAnimals.ItemsSource = animalTable.DefaultView;
                 }
-            
-        }
+            }
 
-        
         // Liste aller Tiere aus der Datenbank
         public void showAllAnimals()
         {
             string query = "SELECT * FROM Animal";
-
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
-
             using (sqlDataAdapter)
             {
                 DataTable allAnimalsTable = new DataTable();
                 sqlDataAdapter.Fill(allAnimalsTable);
-
                 allAnimals.DisplayMemberPath = "Name";
                 allAnimals.SelectedValuePath = "Id";
-
                 allAnimals.ItemsSource = allAnimalsTable.DefaultView;
             }
         }
-
 
         // Hinzufügen eines Zoostandortes in die Tabelle Zoo
         public void addZoo_Click(object sender, RoutedEventArgs e)
@@ -133,14 +109,10 @@ namespace WPFSQLDB
             finally { sqlConnection.Close(); showZoo(); }                       // Verbindung schließen, Ansicht aktualisieren
         }
 
-
         // Hinzufügen einer Tierart zu der Tabelle Zoo
         public void addAnimal_toZoo_Click(object sender, RoutedEventArgs e)
         {
-            if(listZoos.SelectedValue == null || allAnimals.SelectedValue == null)
-            {
-                return;
-            }
+            if(listZoos.SelectedValue == null || allAnimals.SelectedValue == null) { return; }
             try
             {
                 //MessageBox.Show("Selected value: " + listZoos.SelectedValue.ToString() + "Selected value: " + allAnimals.SelectedValue.ToString());
@@ -153,7 +125,6 @@ namespace WPFSQLDB
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString());}
             finally { sqlConnection.Close(); showAssociatedAnimals(); }
-
         }
 
         //Hinzufügen einer Tierart in Tabelle "AllAnimal"
@@ -164,7 +135,6 @@ namespace WPFSQLDB
             sqlConnection.Open();
             sqlCommand.Parameters.AddWithValue("@Name", txtBox.Text);
             sqlCommand.ExecuteScalar();
-
             sqlConnection.Close(); showAllAnimals();
         }
 
@@ -220,7 +190,6 @@ namespace WPFSQLDB
             {
                 sqlConnection.Close(); showAssociatedAnimals(); showZoo();
             }
-
         }
 
         //Aktualisiere die Liste der Tiere
@@ -236,7 +205,6 @@ namespace WPFSQLDB
                 sqlCommand.Parameters.AddWithValue("@ids", allAnimals.SelectedValue);
                 DataTable animalDataTable = new DataTable();
                 sqlDataAdapter.Fill(animalDataTable);
-
                 txtBox.Text = animalDataTable.Rows[0]["Name"].ToString();
             }
         }
@@ -254,7 +222,6 @@ namespace WPFSQLDB
                 sqlCommand.Parameters.AddWithValue("@ids", listZoos.SelectedValue);
                 DataTable zooDataTable = new DataTable();
                 sqlDataAdapter.Fill(zooDataTable);
-
                 txtBox.Text = zooDataTable.Rows[0]["Location"].ToString();
             }
             }
@@ -286,14 +253,8 @@ namespace WPFSQLDB
             sqlCommand.ExecuteScalar();
 
             }
-            catch(Exception ex)
-            {
-
-            }
-            finally{
-                sqlConnection.Close();
-                showZoo();
-            }
+            catch(Exception ex){}
+            finally{ sqlConnection.Close(); showZoo();}
         }
 
         private void UpdateAnimal_Click(object sender, RoutedEventArgs e)
@@ -307,17 +268,9 @@ namespace WPFSQLDB
                 sqlCommand.Parameters.AddWithValue("@animalid", allAnimals.SelectedValue);
                 sqlCommand.Parameters.AddWithValue("@Name", txtBox.Text);
                 sqlCommand.ExecuteScalar();
-
             }
-            catch (Exception ex)
-            {
-
-            }
-            finally
-            {
-                sqlConnection.Close();
-                showAllAnimals();
-            }
+            catch (Exception ex) {}
+            finally {sqlConnection.Close(); showAllAnimals();}
         }
     }
 }
