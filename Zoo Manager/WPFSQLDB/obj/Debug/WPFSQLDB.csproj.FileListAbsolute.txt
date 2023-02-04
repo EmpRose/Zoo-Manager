@@ -1,0 +1,16 @@
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\bin\Debug\WPFSQLDB.exe.config
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\bin\Debug\WPFSQLDB.exe
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\bin\Debug\WPFSQLDB.pdb
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB.csproj.AssemblyReference.cache
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB.csproj.SuggestedBindingRedirects.cache
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\MainWindow.g.cs
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\App.g.cs
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB_MarkupCompile.cache
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB_MarkupCompile.lref
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\MainWindow.baml
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB.g.resources
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB.Properties.Resources.resources
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB.csproj.GenerateResource.cache
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB.csproj.CoreCompileInputs.cache
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB.exe
+C:\Users\Rosepattern\source\repos\FirstStep\WPFSQLDB\obj\Debug\WPFSQLDB.pdb
